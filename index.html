@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCB Bank Limited</title>
+    <link rel="shortcut icon" href="PCB-logo.svg" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="mainDiv">
+        <h1 class="text-center text-primary py-5 fw-bold">Welcome to PCB Bank Limited</h1>
+        <div class="login-sec">
+            <h4 class="py-1 ">Login</h4>
+            <input class="form-control" type="email" required name="Username" placeholder="Username/Email"><br>
+            <input class="form-control" type="password" name="password" placeholder="Password" id=""><br>
+            <a class="btn btn-primary" id="btnLogin" href="#" role="button">Login </a>
+        </div>
+    </div>
+
+    <div id="paymentDIv">
+        <h1 class="text-center text-primary pb-5 fw-bold">Welcome Back</h1>
+        <div class="row g-4 text-white pb-5">
+            <div class="col-md-4">
+                <div class="card bg-primary p-3">
+                    <div class="card-body ">
+                        <h5 class="card-title fs-2 ">Deposit</h5>
+                        <h2 class="fw-bold fs-1">$<span id="currentDiposit">00</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-secondary p-3 ">
+                    <div class="card-body  ">
+                        <h5 class="card-title fs-2 ">Withdraw</h5>
+                        <h2 id="withdraw" class="fw-bold fs-1">$<span id="currentWithdraw">00</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-danger p-3">
+                    <div class="card-body">
+                        <h5 class="card-title fs-2">Balance</h5>
+                        <h2 class="fw-bold fs-1">$
+                            <SPan id="currentBalance">1240</SPan>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-5 g-4">
+            <div class="col-md-6">
+                <div class="login-sec p-5">
+                    <h4 class="py-1 fw-bolder fs-1">Deposit</h4>
+                    <input id="depositAmmount" class="form-control" type="text" name="Username" placeholder="$ ammount you want to Diposit"><br>
+                    <a class="btn btn-primary" id="addDeposit" role="button">Deposit</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="login-sec p-5">
+                    <h4 class="py-1 fw-bolder fs-1">Withdraw</h4>
+                    <input id="withdrawAmmount" class="form-control" type="text" name="Username" placeholder="$ ammount you want to Withdraw"><br>
+                    <a class="btn btn-primary" id="addWithdraw" role="button">Withdraw</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        //Login Button Handeler Section
+        var loginBtn = document.getElementById("btnLogin");
+        loginBtn.addEventListener("click", function() {
+            const mainDiv = document.getElementById("mainDiv");
+            mainDiv.style.display = "none";
+
+            const paymentDiv = document.getElementById("paymentDIv");
+            paymentDiv.style.display = "block";
+
+        })
+
+        //Add Deposit Button Handeler Section
+        var addDeposit = document.getElementById("addDeposit");
+
+        addDeposit.addEventListener("click", function() {
+            const depositAmmount = document.getElementById("depositAmmount").value;
+            const depositNumber = parseFloat(depositAmmount);
+            if (depositAmmount == " " || depositAmmount == Text) {
+
+                document.getElementById("depositAmmount").value = "Please Enput a Valid Vaue";
+
+            } else {
+                updateSpanText("currentDiposit", depositNumber)
+                updateSpanText("currentBalance", depositNumber)
+                document.getElementById("depositAmmount").value = "";
+
+            }
+
+
+        })
+
+        function updateSpanText(id, depositNumber) {
+            const current = document.getElementById(id).innerText;
+            const currentBtn = parseFloat(current);
+            const totalammount = currentBtn + depositNumber;
+            document.getElementById(id).innerText = totalammount;
+        }
+
+        //Add Withdrow Button Handeler Section
+
+        var addWithdraw = document.getElementById("addWithdraw");
+        addWithdraw.addEventListener("click", function() {
+            const withdrawAmmount = document.getElementById("withdrawAmmount").value;
+            const withdrawNumber = parseFloat(withdrawAmmount);
+
+            const currentWithdraw = document.getElementById("currentWithdraw").innerText;
+            const withdrowBtn = parseFloat(currentWithdraw);
+
+            const totalWithdraw = withdrowBtn + withdrawNumber;
+
+            document.getElementById("currentWithdraw").innerText = totalWithdraw;
+            document.getElementById("withdrawAmmount").value = "";
+
+
+            const currentBalance = document.getElementById("currentBalance").innerText;
+            const balanceBtn = parseFloat(currentBalance);
+            const totalBalance = balanceBtn - withdrawNumber;
+            document.getElementById("currentBalance").innerText = totalBalance;
+
+        })
+    </script>
+</body>
+
+</html>

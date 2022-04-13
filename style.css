@@ -1,0 +1,14 @@
+body {
+    padding: 100px;
+}
+
+.login-sec {
+    padding: 50px;
+    padding-top: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px gray;
+}
+
+#paymentDIv {
+    display: none;
+}
